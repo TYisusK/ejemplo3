@@ -1,11 +1,29 @@
+<!-- Contenedor del menú superior derecho -->
+<div class="nav-container">
+  <a href="https://portafolio-de-evidencias-parcial1.netlify.app/" class="home-btn">
+    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home">
+  </a>
+
+  <!-- Menú desplegable con select -->
+  <select class="menu-select" onchange="location = this.value;">
+    <option value="" selected disabled>Menú</option>
+    <option value="https://fundamentos-ejemmplo1.netlify.app/">Ejemplo 1</option>
+    <option value="https://ejemplo2dados.netlify.app/">Ejemplo 2</option>
+    <option value="https://ejemplo3productos.netlify.app/">Ejemplo 3</option>
+    <option value="https://ejemplo4formularioreact.netlify.app/">Ejemplo 4</option>
+    <option value="https://ejemplo5formularioreactivo.netlify.app/">Ejemplo 5</option>
+    <option value="https://hotelutx-parcial1.netlify.app/">Proyecto</option>
+  </select>
+</div>
+
 <div style="margin: 20px;">
-  <h1>Catalogo de Productos</h1>
+  <h1>Catálogo de Productos</h1>
   @if(productos.length > 0){
     <table class="table">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Descripcion</th>
+          <th>Descripción</th>
           <th>Precio</th>
           <th>Seleccionar</th>
           <th>Eliminar</th>
@@ -17,13 +35,16 @@
             <td>{{producto.id}}</td>
             <td>{{producto.descripcion}}</td>
             <td>{{producto.precio}}</td>
-
-            <td><button type="button" class="btn btn-warning"
-              (click)="seleccionarProducto(producto)">"Seleccionar"</button>
+            <td>
+              <button type="button" class="btn btn-warning" (click)="seleccionarProducto(producto)">
+                Seleccionar
+              </button>
             </td>
-            <td><button type="button" class="btn btn-danger" (click)="eliminarProducto(producto.id)">Eliminar</button></td>
-           
-            
+            <td>
+              <button type="button" class="btn btn-danger" (click)="eliminarProducto(producto.id)">
+                Eliminar
+              </button>
+            </td>
           </tr>
         }
       </tbody>
@@ -33,25 +54,43 @@
   }
 
   <div>
-    <p>
-      ID: <input type="number" [(ngModel)]="producto.id" />
-    </p>
-    <p>
-      Descripcion: <input type="text" [(ngModel)]="producto.descripcion" />
-    </p>
-    <p>
-      Precio: <input type="number" [(ngModel)]="producto.precio" />
-    </p>
-
+    <p>ID: <input type="number" [(ngModel)]="producto.id" /></p>
+    <p>Descripción: <input type="text" [(ngModel)]="producto.descripcion" /></p>
+    <p>Precio: <input type="number" [(ngModel)]="producto.precio" /></p>
     <p>
       <button type="button" class="btn btn-primary" (click)="agregarProducto()">Agregar</button>
     </p>
-
     <p>
-      <button type="button" class="btn btn-success" (click)="modificarProducto()">modificarProducto</button>
+      <button type="button" class="btn btn-success" (click)="modificarProducto()">Modificar</button>
     </p>
-
   </div>
 </div>
 
 <router-outlet></router-outlet>
+
+<!-- Estilos -->
+<style>
+  .nav-container {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+  }
+
+  .home-btn img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .menu-select {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+</style>
